@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Categories</title>   
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/config.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script src="js/newsfeed1_plus.js"></script>
+    <script type="text/javascript" src="libs/angular.min.js"></script>
+    <script type="text/javascript" src="libs/angular-cookies.js"></script>
+    <script type="text/javascript" src="js/deniNewFeed2.js"></script>
+    <link rel="stylesheet" href="css/fontface.css">
+    <link rel="stylesheet" href="css/bstyle1.css">
+    <link rel="stylesheet" href="css/newpage.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="body-wrapper" ng-controller="viewCtrl" data-ng-app="deniApp">
+    <!--START content_feed_2-->
+    <header class="header bg-inline">
+            <div class="header-top">
+                <div class="container">
+                    <h1 class="title-header text-center">5 Tipps Sich Selbst Zu</h1>
+                    <span class="back-page"></span>
+                </div>
+            </div>
+            <div class="header-bottom header-comment">
+                <div class="container">
+                    <div class="head-content-cm">
+                        <div class="head-cm item-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <span class="date-time">17.03.2018</span>
+                        </div>
+                        <div class="head-cm item-count-comment">
+                            <i class="fa fa-comment-o"></i>
+                            <span class="count-comment">5</span>                                
+                        </div>
+                        <div class="head-cm item-page">
+                            <i class="fa fa-bookmark-o"></i>
+                            <span class="count-page">24</span>
+                        </div>                          
+                    </div>
+                </div>
+            </div>
+    </header>
+
+    <div class="newfeed_comment">
+        <div class="container">
+            <div class="comments-content">
+                <ul class="list-comment">
+                    <li class="item-comment">
+                        <div class="item-avata pull-left">
+                            <img src="images/avatar.jpg" alt="">
+                        </div>
+                        <div class="item-content">
+                            <h4 class="item-title">Maximiliam Mustermann</h4>
+                            <div class="mstLight commtent">
+                                There are many variations of passages of Lorem Ipsum available, but the majority
+                            </div>
+                            <div class="comment-foter mstLight">
+                                <div class="time-current pull-left">17.10.18 um 14:15</div>
+                                <div class="item-reply pull-right">
+                                    <a href="#">                                        
+                                        <span class="count-reply"></span>
+                                        <span class="reply">antworten</span>
+                                    </a>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-comment">
+                        <div class="item-avata pull-left">
+                            <img src="images/avatar.jpg" alt="">
+                        </div>
+                        <div class="item-content">
+                            <h4 class="item-title">Maximiliam Mustermann</h4>
+                            <div class="mstLight commtent">
+                                There are many variations of passages of Lorem Ipsum available, but the majority
+                            </div>
+                            <div class="comment-foter mstLight">
+                                <div class="time-current pull-left">17.10.18 um 14:15</div>
+                                <div class="item-reply pull-right">
+                                    <a href="#">                                        
+                                        <span class="count-reply">2</span>
+                                        <span class="reply">antworten</span>
+                                    </a>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <ul class="list-comment-child">
+                            <li class="item-comment-child">
+                                <div class="item-avata pull-left">
+                                    <img src="images/avatar.jpg" alt="">
+                                </div>
+                                <div class="item-content">
+                                    <h4 class="item-title">Maximiliam Mustermann</h4>
+                                    <div class="mstLight commtent">
+                                        There are many variations of passages of Lorem Ipsum available, but the majority
+                                    </div>
+                                    <div class="comment-foter mstLight">
+                                        <div class="time-current pull-left">17.10.18 um 14:15</div>
+                                        <div class="item-reply pull-right">
+                                            <a href="#">                                        
+                                                <span class="count-reply"></span>
+                                                <span class="reply">antworten</span>
+                                            </a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="item-comment-child">
+                                <div class="item-avata pull-left">
+                                    <img src="images/avatar.jpg" alt="">
+                                </div>
+                                <div class="item-content">
+                                    <h4 class="item-title">Maximiliam Mustermann</h4>
+                                    <div class="mstLight commtent">
+                                        There are many variations of passages of Lorem Ipsum available, but the majority
+                                    </div>
+                                    <div class="comment-foter mstLight">
+                                        <div class="time-current pull-left">17.10.18 um 14:15</div>
+                                        <div class="item-reply pull-right">
+                                            <a href="#">                                        
+                                                <span class="count-reply"></span>
+                                                <span class="reply">antworten</span>
+                                            </a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="item-comment">
+                        <div class="item-avata pull-left">
+                            <img src="images/avatar.jpg" alt="">
+                        </div>
+                        <div class="item-content">
+                            <h4 class="item-title">Maximiliam Mustermann</h4>
+                            <div class="mstLight commtent">
+                                There are many variations of passages of Lorem Ipsum available, but the majority
+                            </div>
+                            <div class="comment-foter mstLight">
+                                <div class="time-current pull-left">17.10.18 um 14:15</div>
+                                <div class="item-reply pull-right">
+                                    <a href="#">                                        
+                                        <span class="count-reply"></span>
+                                        <span class="reply">antworten</span>
+                                    </a>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="form-reply">
+                    <form class="frm-reply" action="">
+                        <input type="text" class="input-reply" placeholder="Antwort">
+                        <button class="btn-submit">sumit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="newfeed_share_comment"> 
+        <div class="container">
+            <div class="form-share-comment">
+                <form action="" class="frm-share-comment">
+                    <input type="text" class="input-share-comment" placeholder="Teile Deine Erfahrung mit uns ">
+                    <button class="fa  fa-microphone btn-share"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+ 
+</div>
+</body>
+</html>
