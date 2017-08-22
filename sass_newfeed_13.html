@@ -21,8 +21,41 @@
     <link rel="stylesheet" href="css/newpage.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-<div class="body-wrapper" ng-controller="newsfeed13Ctrl" data-ng-app="newsFeedApp">
+
+<style>
+    /* ------------------
+        Animationload
+    --------------------*/
+    .animationload {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ffffff;
+        z-index: 999999;
+    }
+
+    .loader {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -100px 0 0 -100px;
+        width: 200px;
+        height: 200px;
+        background-image: url("loading-gear.gif");
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+</style>
+
+<body ng-controller="newsfeed13Ctrl" data-ng-app="newsFeedApp">
+<!-- Load page -->
+<div class="animationload" style="display: block;" id="load">
+    <div class="loader"></div>
+</div>
+<!-- End load page -->
+<div class="body-wrapper">
     <!--START content_feed_2-->
     <header class="header bg-inline">
         <div class="header-top">

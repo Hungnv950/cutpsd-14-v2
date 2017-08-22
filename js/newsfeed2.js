@@ -9,11 +9,37 @@ newsFeedApp.controller('newsFeedCtrl', ['$scope', '$http', '$filter', '$timeout'
 
     $scope.catsUrl = "getCategory.php";
 
+    $scope.cats = [];
+    $scope.temp = [];
+
+    if (!angular.isUndefined($cookieStore.get('cats'))) {
+        $scope.cats = $cookieStore.get('cats');
+
+        angular.forEach($scope.cats, function (value, key) {
+            $scope.temp.push(value['$oid']);
+        });
+
+    }
+
     function getCats(url) {
         $http({
             method: 'GET',
             url: url
         }).success(function (newsfeed) {
+
+            angular.forEach(newsfeed, function (value, key) {
+                newsfeed[key]['checked'] = 0;
+                if ($scope.cats.length != 0) {
+                    angular.forEach($scope.cats, function (value_, key_) {
+
+                        if (value['_id']['$oid'] == value_['$oid']) {
+                            newsfeed[key]['checked'] = 1;
+                        }
+                    });
+                }
+
+            });
+
             $scope.newsfeed = newsfeed;
 
             $scope.load.css('display', 'none');
@@ -24,29 +50,32 @@ newsFeedApp.controller('newsFeedCtrl', ['$scope', '$http', '$filter', '$timeout'
 
     getCats($scope.catsUrl);
 
-    $scope.cats = [];
-
     $scope.checkClick = function (key, _id) {
         var myButtonClasses = document.getElementById("cat_id_" + key).classList;
-        if ($scope.cats.indexOf(_id) === -1) {
+
+        if ($scope.temp.indexOf(_id['$oid']) === -1) {
             $scope.cats.push(_id);
+            $scope.temp.push(_id['$oid']);
             myButtonClasses.add("cate-active");
         }
         else {
-            var index = $scope.cats.indexOf(_id);
+            var index = $scope.temp.indexOf(_id['$oid']);
             if (index > -1) {
                 $scope.cats.splice(index, 1);
+                $scope.temp.splice(index, 1);
             }
             myButtonClasses.remove("cate-active");
         }
 
-        console.log($scope.cats);
     };
 
     $scope.checkNext = function () {
 
         if ($scope.cats.length != 0) {
             $cookieStore.put('cats', $scope.cats);
+        }
+        else {
+            $cookieStore.remove('cats');
         }
 
         window.location.replace("sass_newfeed_3.html");
@@ -55,4 +84,12 @@ newsFeedApp.controller('newsFeedCtrl', ['$scope', '$http', '$filter', '$timeout'
     $scope.back = function () {
         window.location.replace("sass_newfeed_1.html");
     };
+
+    function loadChecked() {
+        angular.forEach($scope.cats, function (value_, key_) {
+            var myButtonClasses = document.getElementById("cat_id_" + key_).classList;
+            myButtonClasses.add("cate-active");
+        });
+    }
+
 }]);

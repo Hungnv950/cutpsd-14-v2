@@ -71,26 +71,26 @@
                 <h3>Deine persönliche Themenwelt </h3>
                 <div class="content-cate">
                     <div class="list-categories">
-                        <div ng-repeat="(key,value) in show">
-                            <div ng-repeat="(key_,value_) in value.sub_category"
-                                 data-ng-click="articles(value._id,key_)" data-ng-if="value_.view==1">
-                                <div class="item-cate">
-                                    <div class="cate_1" color-this="background-color" data-color="key_+key"></div>
-                                    <img data-ng-src="{{value_.image}}" alt="">
-                                    <div class="count-post">{{value_.articles.length}}</div>
-                                    <div class="title-cate"><a href="">{{value_.sub_cat_name}}</a></div>
-                                </div>
+                        <div ng-repeat="(key,value) in show" data-ng-click="articles(value._id,key)"
+                             data-ng-if=" ( key<2 && show.length >=2 ) || show.length < 2">
+                            <div class="item-cate">
+                                <div class="cate_1" color-this="background-color" data-color="key"></div>
+                                <img data-ng-src="{{value.image}}" alt="">
+                                <div class="count-post">{{value.articles}}</div>
+                                <div class="title-cate"><a href="">{{value.cat_name}}</a></div>
                             </div>
                         </div>
-                        <!--<div class="last-item-cate" ng-repeat="(key,value) in show"-->
-                             <!--data-ng-if="key > show.length-2 && show.length >=2">-->
-                            <!--<div class="item-cate cate_3">-->
-                                <!--<img data-ng-src="{{value_.image}}" alt="">-->
-                                <!--<div class="title-cate"><a href="">{{value_.sub_cat_name}}</a></div>-->
-                                <!--<div class="count-post">{{value_.articles.length}}</div>-->
-                            <!--</div>-->
-                            <!--<div class="clearfix"></div>-->
-                        <!--</div>-->
+                        <div class="last-item-cate">
+                            <div class="item-cate cate_3" ng-repeat="(key,value) in show"
+                                 data-ng-click="articles(value._id,key)"
+                                 data-ng-if="key >= 2">
+                                <div class="cate_1" color-this="background-color" data-color="key"></div>
+                                <img data-ng-src="{{value.image}}" alt="">
+                                <div class="title-cate"><a href="">{{value.cat_name}}</a></div>
+                                <div class="count-post">{{value.articles}}</div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
                     </div>
                 </div>
             </div>

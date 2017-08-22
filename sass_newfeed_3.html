@@ -82,7 +82,8 @@
         <div class="row" data-ng-repeat="(keyCat,cat) in show">
             <h2 class="cate-chil">{{cat.cat_name}}</h2>
             <button class="btn cate" data-ng-repeat="(keySub, subSategory) in cat.sub_category"
-                    data-ng-click="checkClick(keyCat,keySub)" id="sub_{{keyCat}}_{{keySub}}">
+                    data-ng-click="checkClick(keyCat,keySub,cat._id)" id="sub_{{keyCat}}_{{keySub}}"
+                    ng-class="subSategory.checked == 1 ? 'cate-active' : '' ">
                 {{subSategory.sub_cat_name}}
             </button>
         </div>

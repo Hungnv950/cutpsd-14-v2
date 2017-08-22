@@ -33,43 +33,39 @@ if ($_id == 1) {
     }
 }
 
+$result = [];
+
 foreach ($search as $cat) {
+
+    $count = 0;
+    $temp = null;
+
+    $temp['cat_name'] = $cat['cat_name'];
+    $temp['_id'] = $cat['_id'];
+
     foreach ($cat['sub_category'] as $key => $sub) {
-        $temp = $sub;
+
+        $count += count($sub['articles']);
 
         $articles = $sub['articles'];
-        if (count($articles)) {
-            $article = get_object_vars($articles[0]);
-            $article = $client->newsfeed->article->findOne(['_id' => new MongoDB\BSON\ObjectID('' . $article['oid'])], ['projection' => [
-                'image' => 1,
-            ]]);
 
-            $cat['sub_category'][$key]['image'] = $article['image'];
-            $cat['sub_category'][$key]['view'] = 0;
-
-
-            if ($positions != -1 && $positions != 0) {
-                foreach ($positions as $position) {
-
-                    $position = get_object_vars($position);
-
-                    $keyCat = get_object_vars($position['keyCat'])['$oid'];
-                    $keySub = $position['keySub'];
-
-                    if ((string)$cat['_id'] == $keyCat) {
-                        $cat['sub_category'][$keySub]['view'] = 1;
-                    }
-
-                }
-            } else {
-                $cat['sub_category'][$key]['view'] = 1;
-            }
-
-        }
     }
 
-    $cats[] = $cat;
+    $temp['articles'] = $count;
+
+    if ($count) {
+        $article = get_object_vars($cat['sub_category'][0]['articles'][0]);
+        $article = $client->newsfeed->article->findOne(['_id' => new MongoDB\BSON\ObjectID('' . $article['oid'])], ['projection' => [
+            'image' => 1,
+        ]]);
+
+        $temp['image'] = $article['image'];
+
+    }
+
+    $result[] = $temp;
+
 }
 
-echo(json_encode($cats));
+echo(json_encode($result));
 

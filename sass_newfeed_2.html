@@ -81,7 +81,8 @@
     <div class="content_link">
         <div class="row">
             <button ng-repeat="(key,value) in newsfeed" class="btn cate" id="cat_id_{{key}}"
-                    data-ng-click="checkClick(key,value._id)">{{value.cat_name}}
+                    data-ng-click="checkClick(key,value._id)" ng-class="value.checked == 1 ? 'cate-active' : '' ">
+                {{value.cat_name}}
             </button>
         </div>
     </div>

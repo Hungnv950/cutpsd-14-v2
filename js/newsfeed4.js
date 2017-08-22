@@ -13,6 +13,7 @@ newsFeedApp.controller('newFeed4', ['$scope', '$http', '$filter', '$timeout', '$
     if (!angular.isUndefined($cookieStore.get('cats'))) {
         $scope.cats = $cookieStore.get('cats');
     }
+
     if (!angular.isUndefined($cookieStore.get('subs'))) {
         $scope.subs = $cookieStore.get('subs');
     }
@@ -29,6 +30,7 @@ newsFeedApp.controller('newFeed4', ['$scope', '$http', '$filter', '$timeout', '$
 
     }
     else {
+
         if ($scope.subs.length != 0) {
             $scope.findCatsUrl += "?positions=" + JSON.stringify($scope.subs);
         }
@@ -41,19 +43,6 @@ newsFeedApp.controller('newFeed4', ['$scope', '$http', '$filter', '$timeout', '$
 
     getCats($scope.findCatsUrl);
 
-    $scope.randomColor = function () {
-        return (Math.random() * 16);
-    };
-
-    $scope.back_to_newfeed3 = function () {
-        window.location.replace("newfeed_3.html");
-    };
-
-    $scope.savePreArticles = function (keyPre) {
-        $cookieStore.put('keyPre', keyPre);
-        window.location.replace("newfeed_5.html");
-    };
-
     function getCats(url) {
         $http({
             method: 'GET',
@@ -62,7 +51,6 @@ newsFeedApp.controller('newFeed4', ['$scope', '$http', '$filter', '$timeout', '$
 
             $scope.show = data;
 
-            console.log($scope.show);
             Load();
 
         }).error(function (data, status, headers, config) {

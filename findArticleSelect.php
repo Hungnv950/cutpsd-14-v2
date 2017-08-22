@@ -11,14 +11,29 @@ $arts = [];
 
 if ($_id != 1 && $position != -1) {
 
-
     $_id = get_object_vars($_id[0]);
 
     $cat = $client->newsfeed->category->findOne(['_id' => new MongoDB\BSON\ObjectID('' . $_id['$oid'])], ['projection' => [
+        'cat_name' => 1,
         'sub_category' => 1,
     ]]);
 
-    $sub = $cat['sub_category'][$position]['articles'];
+    $sub = $cat['sub_category'][0]['articles'];
+
+    $result = [];
+
+    $result['cat_name'] = $cat['cat_name'];
+    $result['subs'] = [];
+    $subs = [];
+    $subs[] = $cat['sub_category'][0]['sub_cat_name'];
+
+    foreach ($cat['sub_category'] as $key => $value) {
+        if ($position != $key) {
+            $subs[] = $value['sub_cat_name'];
+        }
+    }
+
+    $result['subs'] = $subs;
 
     $articles = [];
 
@@ -27,5 +42,6 @@ if ($_id != 1 && $position != -1) {
         $articles[] = $client->newsfeed->article->findOne(['_id' => new MongoDB\BSON\ObjectID('' . $value['oid'])]);
     }
 
-    echo(json_encode($articles));
+    $result['articles'] = $articles;
+    echo(json_encode($result));
 }

@@ -2,18 +2,24 @@ var newsFeedApp = angular.module('newsFeedApp', ['ngCookies']);
 
 newsFeedApp.controller('newsfeed13Ctrl', ['$scope', '$http', '$filter', '$timeout', '$cookieStore', function ($scope, $http, $filter, $timeout, $cookieStore) {
 
+    //loading gif
+    $scope.load = angular.element(document.querySelector('#load'));
+
     $scope.article = null;
 
     $scope.findArtsUrl = "findArticle.php";
 
     function getArticle(url) {
         var seeArticle = $cookieStore.get('seeArticle');
+
+
+
         $http({
             method: 'GET',
-            url: url + "?_id=[" + JSON.stringify(seeArticle) + "]"
+            url: url + "?_id=[" + JSON.stringify(seeArticle['keyArt']) + "]"
         }).success(function (data) {
             $scope.article = data[0];
-
+            Load();
         }).error(function (data, status, headers, config) {
         });
     }
@@ -63,7 +69,16 @@ newsFeedApp.controller('newsfeed13Ctrl', ['$scope', '$http', '$filter', '$timeou
             $scope.reply = true;
         }
 
-
     };
+
+    function Load() {
+
+        var countUp = function () {
+            $scope.load.css('display', 'none');
+            $timeout(countUp, 1000);
+        };
+
+        $timeout(countUp, 1000);
+    }
 
 }]);

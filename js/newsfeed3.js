@@ -17,49 +17,61 @@ newsFeedApp.controller('newFeedCtrl', ['$scope', '$http', '$filter', '$timeout',
         $scope.findCatsUrl += "?_id=" + JSON.stringify($scope.cats);
     }
 
+    $scope.subs = [];
+    $scope.temp = [];
+
+    if (!angular.isUndefined($cookieStore.get('subs'))) {
+        $scope.subs = $cookieStore.get('subs');
+
+        angular.forEach($scope.subs, function (value, key) {
+            $scope.temp.push(value['keyCat']['$oid'] + "_" + value['keySub']);
+        });
+
+    }
+
     $scope.show = [];
 
     getCats($scope.findCatsUrl);
-
-    $scope.keyCat = null;
-    $scope.keySub = null;
-
-    $scope.newfeed_starten_btn = function () {
-        if ($scope.keySub !== null) {
-            $cookieStore.put('keySub', $scope.keySub);
-        }
-
-        $cookieStore.put('keyCat', $scope.cats[$scope.keyCat]);
-        window.location.replace("newfeed_4.html");
-    };
 
     function getCats(url) {
         $http({
             method: 'GET',
             url: url
         }).success(function (data) {
+            angular.forEach(data, function (value, key) {
+                if ($scope.subs.length != 0) {
+                    angular.forEach($scope.subs, function (value_, key_) {
+                        if (value['_id']['$oid'] == value_['keyCat']['$oid']) {
+                            data[key]['sub_category'][value_['keySub']]['checked'] = 1;
+                        }
+                    });
+                }
+            });
+
             $scope.show = data;
+
+            console.log($scope.show);
+
             $scope.load.css('display', 'none');
 
         }).error(function (data, status, headers, config) {
         });
     }
 
-    $scope.subs = [];
-    $scope.temp = [];
 
-    $scope.checkClick = function (keyCat, keySub) {
+    $scope.checkClick = function (keyCat, keySub, _id) {
 
         var myButtonClasses = document.getElementById("sub_" + keyCat + "_" + keySub).classList;
 
-        var temp = keyCat + "_" + keySub;
+        var temp = _id[['$oid']] + "_" + keySub;
 
         if ($scope.temp.indexOf(temp) === -1) {
             $scope.temp.push(temp);
             $scope.subs.push({
-                "keyCat": $scope.cats[keyCat],
+                "keyCat": _id,
                 "keySub": keySub
             });
+
             myButtonClasses.add("cate-active");
         }
         else {
@@ -77,6 +89,7 @@ newsFeedApp.controller('newFeedCtrl', ['$scope', '$http', '$filter', '$timeout',
     $scope.newfeed_starten_btn = function () {
         if ($scope.subs.length !== 0) {
             $cookieStore.put('subs', $scope.subs);
+
         }
         else {
             $cookieStore.remove('subs');

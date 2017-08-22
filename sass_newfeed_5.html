@@ -59,25 +59,19 @@
             <span class="fa fa-angle-left" data-ng-click="back()"></span>
         </div>
         <div class="col-xs-10" style="padding: 0">
-            <h1>GEWICHT & ERNAHRUNG</h1>
+            <h1>{{articles.cat_name}}</h1>
         </div>
         <div class="col-xs-1" style="padding: 0">
-            <span class="icon_right fa fa-bookmark-o"></span>
+            <span class="icon_right fa fa-bookmark-o" data-ng-click="goToTavorites()"></span>
         </div>
     </div>
     <div class="row header_title">
-        <div class="col-xs-4">
-            <span class="title_name title_active">Vegan</span>
-        </div>
-        <div class="col-xs-4">
-            <span class="title_2">Glutenfrei</span>
-        </div>
-        <div class="col-xs-4">
-            <span class="title_3">Nut</span>
+        <div class="col-xs-4" data-ng-repeat="(key,value) in articles.subs">
+            <span data-ng-class="key == 0 ? 'title_name title_active' : 'title_3' ">{{value}}</span>
         </div>
     </div>
     <div class="btn_config">
-        <a href="#">
+        <a href="" data-ng-click="goToSet()">
             <div class="btn_lag">
                 <div class="btn_small">
                     <img src="images/newfeed_5/buttom.png" alt="">
@@ -89,13 +83,15 @@
 
 <div class="content">
 
-    <div class="row item" data-ng-repeat="(key,value) in articles" data-ng-click="seeArticle(value._id)">
+    <div class="row item" data-ng-repeat="(key,value) in articles.articles">
         <div class="col-xs-12">
-            <img class="item-img" data-ng-src="{{value.image}}" alt="...">
+            <img class="item-img" data-ng-src="{{value.image}}" alt="..."
+                 data-ng-click="seeArticle(key,value._id,articles.articles.length,articles.subs[0])">
         </div>
         <div class="col-xs-12">
             <div class="caption">
-                <h2>{{value.title}}</h2>
+                <h2 data-ng-click="seeArticle(key,value._id,articles.articles.length,articles.subs[0])">
+                    {{value.title}}</h2>
                 <p>{{value.abstract}}</p>
             </div>
         </div>
@@ -106,7 +102,8 @@
                     <span class="detail">{{value.datetime}}</span>
                 </div>
                 <div class="col-xs-3" style="padding-right: 5px; padding-left: 5px;">
-                    <span class="fa fa-comment-o col-xs-5"></span>
+                    <span class="fa fa-comment-o col-xs-5"
+                          data-ng-click="goToComment(key,value._id,articles.articles.length,articles.subs[0])"></span>
                     <span class="detail">{{value.comments.length}}</span>
                 </div>
                 <div class="col-xs-3" style="padding-left: 5px;">

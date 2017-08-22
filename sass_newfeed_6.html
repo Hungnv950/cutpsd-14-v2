@@ -54,7 +54,7 @@
                             </div>
                         </div>
                         <h3 class="item-title">{{article.title}}</h3>
-                        <div class="item-source">{{article.url}}</div>
+                        <div class="item-source" data-ng-click="goToUrl(article.url)">{{getDomain(article.url)}}</div>
                         <div class="description">
                             {{article.content}}
                         </div>
@@ -65,8 +65,8 @@
         <div class="" id="footer">
             <div class="container">
                 <div class="content-footer mstBold">
-                    <div class="title-tag pull-left">Vegan</div>
-                    <div class="number-page pull-right">01|24</div>
+                    <div class="title-tag pull-left">{{article.sub}}</div>
+                    <div class="number-page pull-right">{{article.position+1}}|{{article.articles}}</div>
                     <div class="clearfix"></div>
                 </div>
             </div>

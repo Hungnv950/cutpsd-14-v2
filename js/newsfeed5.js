@@ -14,7 +14,7 @@ newsFeedApp.controller('newsfeed5Ctrl', ['$scope', '$http', '$filter', '$timeout
 
         $http({
             method: 'GET',
-            url: url + "?_id=[" + JSON.stringify(subSelect['keyCat'])+"]" + "&position=" + subSelect['keySub']
+            url: url + "?_id=[" + JSON.stringify(subSelect['keyCat']) + "]" + "&position=" + subSelect['keySub']
         }).success(function (data) {
             $scope.articles = data;
 
@@ -25,8 +25,16 @@ newsFeedApp.controller('newsfeed5Ctrl', ['$scope', '$http', '$filter', '$timeout
 
     getSubSelect($scope.findArtsUrl);
 
-    $scope.seeArticle = function (_id) {
-        $cookieStore.put('seeArticle', _id);
+    $scope.seeArticle = function (key, _id, articles, sub) {
+
+        var seeArticle = {
+            "keyArt": _id,
+            'position': key,
+            'articles': articles,
+            'sub': sub
+        };
+
+        $cookieStore.put('seeArticle', seeArticle);
         window.location.replace("sass_newfeed_6.html");
     };
 
@@ -43,5 +51,27 @@ newsFeedApp.controller('newsfeed5Ctrl', ['$scope', '$http', '$filter', '$timeout
 
         $timeout(countUp, 1000);
     }
+
+    $scope.goToComment = function (key, _id, articles, sub) {
+
+        var seeArticle = {
+            "keyArt": _id,
+            'position': key,
+            'articles': articles,
+            'sub': sub
+        };
+
+        $cookieStore.put('seeArticle', seeArticle);
+
+        window.location.replace("sass_newfeed_13.html");
+    };
+
+    $scope.goToTavorites = function () {
+        window.location.replace("sass_newfeed_12.html");
+    };
+
+    $scope.goToSet = function () {
+        window.location.replace("sass_newfeed_11.html");
+    };
 
 }]);
