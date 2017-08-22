@@ -12,7 +12,6 @@ watchesApp.controller('newsFeedCtrl', ['$scope', '$http', '$filter', '$timeout',
         }).success(function (newsfeed) {
             $scope.newsfeed = newsfeed;
 
-            console.log($scope.newsfeed);
         }).error(function (newsfeed, status, headers, config) {
         });
     }
@@ -34,10 +33,13 @@ watchesApp.controller('newsFeedCtrl', ['$scope', '$http', '$filter', '$timeout',
             }
             myButtonClasses.remove("cate-active");
         }
+
+        console.log($scope.cats);
     };
 
     $scope.checkNext = function () {
-        if ($scope.cats.length == 0) {
+
+        if ($scope.cats.length != 0) {
             $cookieStore.put('cats', $scope.cats);
         }
 

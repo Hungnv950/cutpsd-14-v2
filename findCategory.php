@@ -6,7 +6,7 @@ $_id = isset($_GET['_id']) ? json_decode($_GET['_id']) : 1;
 
 $client = new MongoDB\Client();
 
-$cat = [];
+$cats = [];
 
 if ($_id == 1) {
     $cats = $client->newsfeed->category->find([], [
@@ -15,17 +15,18 @@ if ($_id == 1) {
             'sub_category' => 1,
         ],
     ]);
+
+    echo(json_encode(iterator_to_array($cats)));
 } else {
     $search = [];
 
     foreach ($_id as $value) {
-        $search[] = ['_id' => new MongoDB\BSON\ObjectID('' . $value)];
+        $value = get_object_vars($value);
+        $cats[] = $client->newsfeed->category->findOne(['_id' => new MongoDB\BSON\ObjectID('' . $value['$oid'])], ['projection' => [
+            'cat_name' => 1,
+            'sub_category' => 1,
+        ]]);
     }
 
-    $cat = $client->newsfeed->category->find(['$or' => $search], ['projection' => [
-        'cat_name' => 1,
-        'sub_category' => 1,
-    ]]);
+    echo(json_encode($cats));
 }
-
-echo(json_encode($cat));

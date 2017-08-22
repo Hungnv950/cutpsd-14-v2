@@ -92,7 +92,7 @@ body {
 					margin-right: 5px;
 				}
 			}
-		}		
+		}
 	}
 }
 /* =============================================================== */
@@ -184,16 +184,16 @@ body {
 				&:last-child {
 					border-bottom: 0;
 				}
-				
+
 			}
 		}
 	}
 	&.style2 {
-	    background-color: #FFF6F2;		
+	    background-color: #FFF6F2;
 	}
 	&.style3 {
-	    background-color: #FFF6F2;	
-	    color: #8084A5;	    
+	    background-color: #FFF6F2;
+	    color: #8084A5;
 	    .element-content {
 	    	ul.list-item {
 	    		li.item {
@@ -440,14 +440,14 @@ body {
 			margin-bottom: 50px;
 			h3 {
 				font-size: 18px;
-				margin: 0 0 15px; 
+				margin: 0 0 15px;
 			}
 			.list-categories {
 				.item-cate {
 					position: relative;
 					margin-bottom: 15px;
 				    text-align: center;
-					&:before {
+					.cate_1 {
 						width: 14px;
 						height: 14px;
 						background-color: #33D5FE;
@@ -503,7 +503,7 @@ body {
 						width: 50%;
 						float: left;
 						padding: 0 7px;
-						.title-cate { 
+						.title-cate {
 							top: 10%;
 							padding: 0 10px;
 							a {
@@ -521,7 +521,7 @@ body {
 				}
 			}
 		}
-	}	
+	}
 /* ===================================================================== */
 /* ============================== Page 6 - 7 =========================== */
 	.page_articles {

@@ -354,7 +354,7 @@ body {
         position: relative;
         margin-bottom: 15px;
         text-align: center; }
-        .body-wrap .page_4 .content .list-categories .item-cate:before {
+        .body-wrap .page_4 .content .list-categories .item-cate .cate_1 {
           width: 14px;
           height: 14px;
           background-color: #33D5FE;
