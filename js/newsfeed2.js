@@ -1,6 +1,6 @@
-var watchesApp = angular.module('newsFeedApp', ['ngCookies']);
+var newsFeedApp = angular.module('newsFeedApp', ['ngCookies']);
 
-watchesApp.controller('newsFeedCtrl', ['$scope', '$http', '$filter', '$timeout', '$cookieStore', function ($scope, $http, $filter, $timeout, $cookieStore) {
+newsFeedApp.controller('newsFeedCtrl', ['$scope', '$http', '$filter', '$timeout', '$cookieStore', function ($scope, $http, $filter, $timeout, $cookieStore) {
 
     //loading gif
     $scope.load = angular.element(document.querySelector('#load'));

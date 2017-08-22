@@ -1,6 +1,6 @@
-var watchesApp = angular.module('deniApp', ['ngCookies', 'ngColorThis']);
+var newsFeedApp = angular.module('deniApp', ['ngCookies', 'ngColorThis']);
 
-watchesApp.controller('newFeed4', ['$scope', '$http', '$filter', '$timeout', '$cookieStore', function ($scope, $http, $filter, $timeout, $cookieStore) {
+newsFeedApp.controller('newFeed4', ['$scope', '$http', '$filter', '$timeout', '$cookieStore', function ($scope, $http, $filter, $timeout, $cookieStore) {
 
     //loading gif
     $scope.load = angular.element(document.querySelector('#load'));
@@ -8,26 +8,33 @@ watchesApp.controller('newFeed4', ['$scope', '$http', '$filter', '$timeout', '$c
     $scope.findCatsUrl = "findSubCategory.php";
 
     $scope.cats = [];
+    $scope.subs = [];
 
     if (!angular.isUndefined($cookieStore.get('cats'))) {
         $scope.cats = $cookieStore.get('cats');
     }
-
-    if ($scope.cats.length != 0) {
-        $scope.findCatsUrl += "?_id=" + JSON.stringify($scope.cats);
-    }
-
-    $scope.subs = [];
-
     if (!angular.isUndefined($cookieStore.get('subs'))) {
         $scope.subs = $cookieStore.get('subs');
     }
 
-    if ($scope.subs.length != 0) {
-        $scope.findCatsUrl += "&positions=" + JSON.stringify($scope.subs);
+    if ($scope.cats.length != 0) {
+        $scope.findCatsUrl += "?_id=" + JSON.stringify($scope.cats);
+
+        if ($scope.subs.length != 0) {
+            $scope.findCatsUrl += "&positions=" + JSON.stringify($scope.subs);
+        }
+        else {
+            $scope.findCatsUrl += "&positions=0";
+        }
+
     }
     else {
-        $scope.findCatsUrl += "&positions=0";
+        if ($scope.subs.length != 0) {
+            $scope.findCatsUrl += "?positions=" + JSON.stringify($scope.subs);
+        }
+        else {
+            $scope.findCatsUrl += "?positions=0";
+        }
     }
 
     $scope.show = [];

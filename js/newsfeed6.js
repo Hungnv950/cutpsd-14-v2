@@ -28,5 +28,9 @@ watchesApp.controller('newsfeed6Ctrl', ['$scope', '$http', '$filter', '$timeout'
         window.location.replace("sass_newfeed_5.html");
     };
 
+    $scope.goToComment = function () {
+        window.location.replace("sass_newfeed_13.html");
+    };
+
 
 }]);
