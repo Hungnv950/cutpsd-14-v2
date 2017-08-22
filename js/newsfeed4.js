@@ -92,9 +92,11 @@ watchesApp.controller('newFeed4', ['$scope', '$http', '$filter', '$timeout', '$c
     }
 
     $scope.articles = function (keyCat, keySub) {
-        $cookieStore.put('subs', $scope.subs);
-        console.log(keyCat);
-        console.log(keySub);
+        $cookieStore.put('subSelect', {
+            "keyCat": keyCat,
+            "keySub": keySub
+        });
+        window.location.replace("newfeed_5.html");
     }
 
 }]);
