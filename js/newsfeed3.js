@@ -82,4 +82,8 @@ watchesApp.controller('newFeedCtrl', ['$scope', '$http', '$filter', '$timeout', 
         window.location.replace("sass_newfeed_4.html");
     };
 
+    $scope.back = function () {
+        window.location.replace("sass_newfeed_2.html");
+    };
+
 }]);

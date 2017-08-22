@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pre Articles</title>    
+    <title>Pre Articles</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/config.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -15,48 +15,48 @@
             crossorigin="anonymous"></script>
     <script type="text/javascript" src="libs/angular.min.js"></script>
     <script type="text/javascript" src="libs/angular-cookies.js"></script>
-    <script type="text/javascript" src="js/deniNewFeed4.js"></script>
+    <script type="text/javascript" src="js/newsfeed6.js"></script>
     <link rel="stylesheet" href="css/fontface.css">
     <link rel="stylesheet" href="css/bstyle1.css">
     <link rel="stylesheet" href="css/newpage.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
+<body data-ng-controller="newsfeed6Ctrl" data-ng-app="newsFeedApp">
 <div class="body-wrap">
-    <div class="page_6 page_articles" data-ng-controller="newFeed4" data-ng-app="deniApp">
+    <div class="page_6 page_articles">
         <div class="header">
             <div class="container">
                 <div class="text-center title-page">
-                    <span class="back-page"></span>
+                    <span class="back-page" data-ng-click="back()"></span>
                     <h1>Gewicht & Ernahrung</h1>
                 </div>
             </div>
         </div>
         <div class="content">
-            <div class="container">                
+            <div class="container">
                 <div class="content-post">
                     <div class="item-image row">
-                        <img src="images/newfeed_6/image_6.jpg" alt="">
+                        <img data-ng-src="{{article.image}}" alt="">
                     </div>
                     <div class="item-content">
                         <div class="item-meta mstLight">
                             <div class="meta-box item-clock">
                                 <i class="fa fa-clock-o"></i>
-                                <span class="date-time">17.03.2018</span>
+                                <span class="date-time">{{article.datetime}}</span>
                             </div>
                             <div class="meta-box item-count-comment">
                                 <i class="fa fa-comment-o"></i>
-                                <span class="count-comment">5</span>                                
+                                <span class="count-comment">{{article.comments.length}}</span>
                             </div>
                             <div class="meta-box item-page">
                                 <i class="fa fa-bookmark-o"></i>
-                                <span class="count-page">24</span>
-                            </div>   
+                                <span class="count-page">{{article.favorites}}</span>
+                            </div>
                         </div>
-                        <h3 class="item-title">Where can I get some?</h3>
-                        <div class="item-source">colorsoffood.de</div>
+                        <h3 class="item-title">{{article.title}}</h3>
+                        <div class="item-source">{{article.url}}</div>
                         <div class="description">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+                            {{article.content}}
                         </div>
                     </div>
                 </div>

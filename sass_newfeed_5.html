@@ -21,130 +21,128 @@
     <script type="text/javascript" src="db.js"></script>
     <script type="text/javascript" src="libs/angular.min.js"></script>
     <script type="text/javascript" src="libs/angular-cookies.js"></script>
-    <script type="text/javascript" src="js/deniNewFeed5.js"></script>
+    <script type="text/javascript" src="js/newsfeed5.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
+<body data-ng-controller="newsfeed5Ctrl" data-ng-app="newsFeedApp">
 
-    <div class="header">
-        <div class="row title">
-            <div class="col-xs-1" style="padding: 0">
-                <span class="fa fa-angle-left"></span>
-            </div>
-            <div class="col-xs-10" style="padding: 0">
-                <h1>GEWICHT & ERNAHRUNG</h1>
-            </div>
-            <div class="col-xs-1" style="padding: 0">
-                <span class="icon_right fa fa-bookmark-o"></span>
-            </div>
+<div class="header">
+    <div class="row title">
+        <div class="col-xs-1" style="padding: 0">
+            <span class="fa fa-angle-left" data-ng-click="back()"></span>
         </div>
-        <div class="row header_title">
-            <div class="col-xs-4">
-                <span class="title_name title_active">Vegan</span>
-            </div>
-            <div class="col-xs-4">
-                <span class="title_2">Glutenfrei</span>
-            </div>
-            <div class="col-xs-4">
-                <span class="title_3">Nut</span>
-            </div>
+        <div class="col-xs-10" style="padding: 0">
+            <h1>GEWICHT & ERNAHRUNG</h1>
         </div>
-        <div class="btn_config">
-            <a href="#">
-                <div class="btn_lag">
-                    <div class="btn_small">
-                        <img src="images/newfeed_5/buttom.png" alt="">
-                    </div>
+        <div class="col-xs-1" style="padding: 0">
+            <span class="icon_right fa fa-bookmark-o"></span>
+        </div>
+    </div>
+    <div class="row header_title">
+        <div class="col-xs-4">
+            <span class="title_name title_active">Vegan</span>
+        </div>
+        <div class="col-xs-4">
+            <span class="title_2">Glutenfrei</span>
+        </div>
+        <div class="col-xs-4">
+            <span class="title_3">Nut</span>
+        </div>
+    </div>
+    <div class="btn_config">
+        <a href="#">
+            <div class="btn_lag">
+                <div class="btn_small">
+                    <img src="images/newfeed_5/buttom.png" alt="">
                 </div>
-            </a>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="content">
+
+    <div class="row item" data-ng-repeat="(key,value) in articles" data-ng-click="seeArticle(value._id)">
+        <div class="col-xs-12">
+            <img class="item-img" data-ng-src="{{value.image}}" alt="...">
+        </div>
+        <div class="col-xs-12">
+            <div class="caption">
+                <h2>{{value.title}}</h2>
+                <p>{{value.abstract}}</p>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="row info">
+                <div class="col-xs-6" style="padding-right: 5px">
+                    <span class="fa fa-clock-o col-xs-5"></span>
+                    <span class="detail">{{value.datetime}}</span>
+                </div>
+                <div class="col-xs-3" style="padding-right: 5px; padding-left: 5px;">
+                    <span class="fa fa-comment-o col-xs-5"></span>
+                    <span class="detail">{{value.comments.length}}</span>
+                </div>
+                <div class="col-xs-3" style="padding-left: 5px;">
+                    <span class="fa fa-clock-o col-xs-5"></span>
+                    <span class="detail">{{value.favorites}}</span>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="content">
-
-        <div class="row item" ng-repeat="value in subCategory.articles">
-            <div class="col-xs-12" >
-                <img class="item-img" src="images/image_8.png" alt="...">
+    <div class="row item" ng-repeat="value in subCategory.articles">
+        <div class="col-xs-12">
+            <img class="item-img" src="images/image_8.png" alt="...">
+        </div>
+        <div class="col-xs-12">
+            <div class="caption">
+                <h2>5 Tipps sich selbst zum Sport z motivier...</h2>
+                <p>Einge gute Word-Life-Balance ist offtenbar gar nicht so eninfach umxusetzen,Einge gute
+                    Word-Life-Balance ist offtenbar gar nicht so eninfach umxusetzen, Einge gute
+                    Word-Life-Balance ist offtenbar gar nicht so eninfach umxusetzen</p>
             </div>
-            <div class="col-xs-12" >
-                <div class="caption">
-                    <h2>5 Tipps sich selbst zum Sport z motivier...</h2>
-                    <p>Einge gute Word-Life-Balance ist offtenbar gar nicht so eninfach umxusetzen,Einge gute
-                        Word-Life-Balance ist offtenbar gar nicht so eninfach umxusetzen, Einge gute
-                        Word-Life-Balance ist offtenbar gar nicht so eninfach umxusetzen</p>
+        </div>
+        <div class="col-xs-12">
+            <div class="row info">
+                <div class="col-xs-6" style="padding-right: 5px">
+                    <span class="fa fa-clock-o col-xs-5"></span>
+                    <span class="detail">17.03.2018</span>
                 </div>
-            </div>
-            <div class="col-xs-12">
-                <div class="row info">
-                    <div class="col-xs-6" style="padding-right: 5px">
-                        <span class="fa fa-clock-o col-xs-5"></span>
-                        <span class="detail">17.03.2018</span>
-                    </div>
-                    <div class="col-xs-3" style="padding-right: 5px; padding-left: 5px;">
-                        <span class="fa fa-comment-o col-xs-5"></span>
-                        <span class="detail">24</span>
-                    </div>
-                    <div class="col-xs-3" style="padding-left: 5px;">
-                        <span class="fa fa-clock-o col-xs-5"></span>
-                        <span class="detail">125</span>
-                    </div>
+                <div class="col-xs-3" style="padding-right: 5px; padding-left: 5px;">
+                    <span class="fa fa-comment-o col-xs-5"></span>
+                    <span class="detail">24</span>
+                </div>
+                <div class="col-xs-3" style="padding-left: 5px;">
+                    <span class="fa fa-bookmark-o col-xs-5"></span>
+                    <span class="detail">125</span>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="row item" ng-repeat="value in subCategory.articles">
-            <div class="col-xs-12" >
-                <img class="item-img" src="images/image_8.png" alt="...">
+    <div class="row item-col" ng-repeat="value in subCategory.articles">
+        <div class="col-xs-5" style="padding-left: 0; padding-right: 0">
+            <img class="item-img" src="images/image_5.jpg" alt="...">
+        </div>
+        <div class="col-xs-7" style="padding-right: 0; padding-left: 10px;">
+            <div class="caption">
+                <h2>5 Tipps sich selbst zum Sport z motivier...</h2>
+                <p>Einge gute Word-Life-Balance ist offtenbar gar nicht so eninfach ...</p>
             </div>
-            <div class="col-xs-12" >
-                <div class="caption">
-                    <h2>5 Tipps sich selbst zum Sport z motivier...</h2>
-                    <p>Einge gute Word-Life-Balance ist offtenbar gar nicht so eninfach umxusetzen,Einge gute
-                        Word-Life-Balance ist offtenbar gar nicht so eninfach umxusetzen, Einge gute
-                        Word-Life-Balance ist offtenbar gar nicht so eninfach umxusetzen</p>
-                </div>
-            </div>
-            <div class="col-xs-12">
+            <div class="col-xs-12" style="padding: 0">
                 <div class="row info">
-                    <div class="col-xs-6" style="padding-right: 5px">
-                        <span class="fa fa-clock-o col-xs-5"></span>
-                        <span class="detail">17.03.2018</span>
-                    </div>
-                    <div class="col-xs-3" style="padding-right: 5px; padding-left: 5px;">
+                    <div class="col-xs-4" style="padding-right: 5px; padding-left: 15px;">
                         <span class="fa fa-comment-o col-xs-5"></span>
                         <span class="detail">24</span>
                     </div>
-                    <div class="col-xs-3" style="padding-left: 5px;">
-                        <span class="fa fa-bookmark-o col-xs-5"></span>
-                        <span class="detail">125</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row item-col" ng-repeat="value in subCategory.articles">
-            <div class="col-xs-5" style="padding-left: 0; padding-right: 0">
-                <img class="item-img" src="images/image_5.jpg" alt="...">
-            </div>
-            <div class="col-xs-7" style="padding-right: 0; padding-left: 10px;">
-                <div class="caption">
-                    <h2>5 Tipps sich selbst zum Sport z motivier...</h2>
-                    <p>Einge gute Word-Life-Balance ist offtenbar gar nicht so eninfach ...</p>
-                </div>
-                <div class="col-xs-12" style="padding: 0">
-                    <div class="row info">
-                        <div class="col-xs-4" style="padding-right: 5px; padding-left: 15px;">
-                            <span class="fa fa-comment-o col-xs-5"></span>
-                            <span class="detail">24</span>
-                        </div>
-                        <div class="col-xs-8" style="padding-right: 0">
-                            <span class="fa fa-clock-o col-xs-5"></span>
-                            <span class="detail">17.03.2018</span>
-                        </div>
+                    <div class="col-xs-8" style="padding-right: 0">
+                        <span class="fa fa-clock-o col-xs-5"></span>
+                        <span class="detail">17.03.2018</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>

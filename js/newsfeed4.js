@@ -96,7 +96,11 @@ watchesApp.controller('newFeed4', ['$scope', '$http', '$filter', '$timeout', '$c
             "keyCat": keyCat,
             "keySub": keySub
         });
-        window.location.replace("newfeed_5.html");
-    }
+        window.location.replace("sass_newfeed_5.html");
+    };
+
+    $scope.back = function () {
+        window.location.replace("sass_newfeed_3.html");
+    };
 
 }]);

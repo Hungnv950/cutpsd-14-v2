@@ -9,11 +9,7 @@ $client = new MongoDB\Client();
 $arts = [];
 
 if ($_id == 1) {
-    $arts = $client->newsfeed->article->find([], [
-        'projection' => [
-            'image' => 1,
-        ],
-    ]);
+    $arts = $client->newsfeed->article->find();
 
     echo(json_encode(iterator_to_array($arts)));
 } else {
@@ -21,9 +17,7 @@ if ($_id == 1) {
 
     foreach ($_id as $value) {
         $value = get_object_vars($value);
-        $arts[] = $client->newsfeed->article->findOne(['_id' => new MongoDB\BSON\ObjectID('' . $value['$oid'])], ['projection' => [
-            'image' => 1,
-        ]]);
+        $arts[] = $client->newsfeed->article->findOne(['_id' => new MongoDB\BSON\ObjectID('' . $value['$oid'])]);
     }
 
     echo(json_encode($arts));
