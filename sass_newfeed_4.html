@@ -13,16 +13,46 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
-    <script type="text/javascript" src="libs/angular.min.js"></script>
-    <script type="text/javascript" src="libs/angular-cookies.js"></script>
-    <script type="text/javascript" src="libs/angular-color-this.min.js"></script>
-    <script type="text/javascript" src="js/newsfeed4.js"></script>
+
     <link rel="stylesheet" href="css/fontface.css">
     <link rel="stylesheet" href="css/bstyle1.css">
     <link rel="stylesheet" href="css/newpage.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
+
+<style>
+    /* ------------------
+        Animationload
+    --------------------*/
+    .animationload {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ffffff;
+        z-index: 999999;
+    }
+
+    .loader {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -100px 0 0 -100px;
+        width: 200px;
+        height: 200px;
+        background-image: url("loading-gear.gif");
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+</style>
+
+<body data-ng-controller="newFeed4" data-ng-app="deniApp">
+<!-- Load page -->
+<div class="animationload" style="display: block;" id="load">
+    <div class="loader"></div>
+</div>
+<!-- End load page -->
 <div class="body-wrap">
     <div class="page_4" data-ng-controller="newFeed4" data-ng-app="deniApp">
         <div class="header">
@@ -41,12 +71,15 @@
                 <h3>Deine persönliche Themenwelt </h3>
                 <div class="content-cate">
                     <div class="list-categories">
-                        <div ng-repeat="(key,value) in show" data-ng-click="articles(value.keyCat,value.keySub)">
-                            <div class="item-cate">
-                                <div class="cate_1" color-this="background-color" data-color="key"></div>
-                                <img data-ng-src="{{value.image}}" alt="">
-                                <div class="count-post">{{value.articles.length}}</div>
-                                <div class="title-cate"><a href="">{{value.sub_cat_name}}</a></div>
+                        <div ng-repeat="(key,value) in show">
+                            <div ng-repeat="(key_,value_) in value.sub_category"
+                                 data-ng-click="articles(value._id,key_)" data-ng-if="value_.view==1">
+                                <div class="item-cate">
+                                    <div class="cate_1" color-this="background-color" data-color="key_+key"></div>
+                                    <img data-ng-src="{{value_.image}}" alt="">
+                                    <div class="count-post">{{value_.articles.length}}</div>
+                                    <div class="title-cate"><a href="">{{value_.sub_cat_name}}</a></div>
+                                </div>
                             </div>
                         </div>
                         <div class="last-item-cate">
@@ -99,5 +132,10 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="libs/angular.min.js"></script>
+<script type="text/javascript" src="libs/angular-cookies.js"></script>
+<script type="text/javascript" src="libs/angular-color-this.min.js"></script>
+<script type="text/javascript" src="js/newsfeed4.js"></script>
 </body>
 </html>

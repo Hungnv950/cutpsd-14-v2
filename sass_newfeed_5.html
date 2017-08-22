@@ -17,15 +17,42 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
-
-    <script type="text/javascript" src="db.js"></script>
-    <script type="text/javascript" src="libs/angular.min.js"></script>
-    <script type="text/javascript" src="libs/angular-cookies.js"></script>
-    <script type="text/javascript" src="js/newsfeed5.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body data-ng-controller="newsfeed5Ctrl" data-ng-app="newsFeedApp">
 
+<style>
+    /* ------------------
+        Animationload
+    --------------------*/
+    .animationload {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ffffff;
+        z-index: 999999;
+    }
+
+    .loader {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -100px 0 0 -100px;
+        width: 200px;
+        height: 200px;
+        background-image: url("loading-gear.gif");
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+</style>
+
+<body data-ng-controller="newsfeed5Ctrl" data-ng-app="newsFeedApp">
+<!-- Load page -->
+<div class="animationload" style="display: block;" id="load">
+    <div class="loader"></div>
+</div>
+<!-- End load page -->
 <div class="header">
     <div class="row title">
         <div class="col-xs-1" style="padding: 0">
@@ -144,5 +171,9 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="libs/angular.min.js"></script>
+<script type="text/javascript" src="libs/angular-cookies.js"></script>
+<script type="text/javascript" src="js/newsfeed5.js"></script>
 </body>
 </html>

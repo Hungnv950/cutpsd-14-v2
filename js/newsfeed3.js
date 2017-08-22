@@ -1,9 +1,9 @@
-/**
- * Created by vietv on 3/4/2017.
- */
 var watchesApp = angular.module('deniApp', ['ngCookies']);
 
 watchesApp.controller('newFeedCtrl', ['$scope', '$http', '$filter', '$timeout', '$cookieStore', function ($scope, $http, $filter, $timeout, $cookieStore) {
+
+    //loading gif
+    $scope.load = angular.element(document.querySelector('#load'));
 
     $scope.findCatsUrl = "findCategory.php";
 
@@ -15,7 +15,6 @@ watchesApp.controller('newFeedCtrl', ['$scope', '$http', '$filter', '$timeout', 
 
     if ($scope.cats.length != 0) {
         $scope.findCatsUrl += "?_id=" + JSON.stringify($scope.cats);
-        console.log($scope.findCatsUrl);
     }
 
     $scope.show = [];
@@ -40,6 +39,7 @@ watchesApp.controller('newFeedCtrl', ['$scope', '$http', '$filter', '$timeout', 
             url: url
         }).success(function (data) {
             $scope.show = data;
+            $scope.load.css('display', 'none');
 
         }).error(function (data, status, headers, config) {
         });
@@ -77,6 +77,9 @@ watchesApp.controller('newFeedCtrl', ['$scope', '$http', '$filter', '$timeout', 
     $scope.newfeed_starten_btn = function () {
         if ($scope.subs.length !== 0) {
             $cookieStore.put('subs', $scope.subs);
+        }
+        else {
+            $cookieStore.remove('subs');
         }
 
         window.location.replace("sass_newfeed_4.html");

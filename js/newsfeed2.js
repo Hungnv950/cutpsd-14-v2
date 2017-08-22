@@ -1,6 +1,10 @@
 var watchesApp = angular.module('newsFeedApp', ['ngCookies']);
 
 watchesApp.controller('newsFeedCtrl', ['$scope', '$http', '$filter', '$timeout', '$cookieStore', function ($scope, $http, $filter, $timeout, $cookieStore) {
+
+    //loading gif
+    $scope.load = angular.element(document.querySelector('#load'));
+
     $scope.newsfeed = null;
 
     $scope.catsUrl = "getCategory.php";
@@ -11,6 +15,8 @@ watchesApp.controller('newsFeedCtrl', ['$scope', '$http', '$filter', '$timeout',
             url: url
         }).success(function (newsfeed) {
             $scope.newsfeed = newsfeed;
+
+            $scope.load.css('display', 'none');
 
         }).error(function (newsfeed, status, headers, config) {
         });
