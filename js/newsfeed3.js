@@ -102,4 +102,7 @@ newsFeedApp.controller('newFeedCtrl', ['$scope', '$http', '$filter', '$timeout',
         window.location.replace("sass_newfeed_2.html");
     };
 
+    $scope.back_1 = function () {
+        window.location.replace("sass_newfeed_1.html");
+    }
 }]);
